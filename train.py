@@ -30,6 +30,7 @@ def main():
 
     joblib.dump(pipe, "model.pkl")
     print("Pipeline saved successfully.")
+    print("CI/CD Automation is Working! Accuracy:", accuracy)
 
 if __name__ == "__main__":
     main()
