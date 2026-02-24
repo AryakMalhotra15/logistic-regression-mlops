@@ -14,7 +14,7 @@ Breast Cancer dataset from sklearn.
 - Model saving using joblib
 
 ## Accuracy
-~95-98% (depending on split)
+~95.61% (depending on split)
 
 ## How to Run
 1. Install dependencies: pip install -r requirements.txt
