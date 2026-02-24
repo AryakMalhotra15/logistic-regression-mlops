@@ -1,6 +1,8 @@
 import joblib
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
@@ -14,16 +16,20 @@ def main():
         X, y, test_size=0.2, random_state=42
     )
 
-    model = LogisticRegression(max_iter=5000)
-    model.fit(X_train, y_train)
+    pipe = Pipeline([
+        ('scaler', StandardScaler()),
+        ('model', LogisticRegression(max_iter=5000))
+    ])
 
-    y_pred = model.predict(X_test)
+    pipe.fit(X_train, y_train)
+
+    y_pred = pipe.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
 
     print("Model Accuracy:", accuracy)
 
-    joblib.dump(model, "logistic_model.pkl")
-    print("Model saved successfully.")
+    joblib.dump(pipe, "model.pkl")
+    print("Pipeline saved successfully.")
 
 if __name__ == "__main__":
     main()
